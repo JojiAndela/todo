@@ -1,4 +1,18 @@
 @import "bootstrap";
+.btn {
+  margin: 0 5px;
+}
+.fix {
+  outline: none;
+  border: none;
+  background: none;
+  &:focus{
+    outline: none;
+  }
+}
+.container{
+  padding-top: 70px;
+}
 .completed{
   font-size: 24px;
   font-weight: bolder;
@@ -12,9 +26,7 @@
 .show{
   padding: 10px;
 }
-body{
-  background-color: #ececec;
-}
+
 a{
   text-decoration: none;
 }
@@ -93,6 +105,8 @@ a:hover {
       justify-content: space-between;
       text-decoration: none;
       .ft {
+        outline: none;
+        background: none;
         padding: 10px;
         text-decoration: none;
         &.show{

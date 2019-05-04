@@ -1,7 +1,4 @@
-<div class="container">
-  <div class="head">
-    <h1>Todos</h1> <%= link_to 'New Todo', new_todo_path, class: 'btn btn-primary' %>
-  </div>
+
   <%completed = false %>
 
     <% @todos.each do |todo| %>
@@ -21,10 +18,10 @@
           <div class="buttons">
             <%= link_to todo, title: 'show' do %> <%= sl_icon "eye", class: "ft show" %> <%end %>
             <%= link_to edit_todo_path(todo), title: 'edit' do %> <%= sl_icon "pencil", class: "ft edit" %> <%end %>
-            <%= link_to todo.completed ? uncomplete_todo_path(todo) : complete_todo_path(todo), method: :post,
-                        data: { confirm: 'Are you sure?' }, title: todo.completed ? 'uncomplete':'complete'  do %>
+            <%=button_to todo.completed ? uncomplete_todo_path(todo) : complete_todo_path(todo), method: :post,
+                        data: { confirm: 'Are you sure?' }, title: todo.completed ? 'uncomplete':'complete', class: 'fix'  do %>
               <%= sl_icon todo.completed ? 'action-undo' :'action-redo' , class: todo.completed ? 'ft unact' :"ft act"%> <%end %>
-            <%= link_to todo, method: :delete, data: { confirm: 'Are you sure?' }, title: 'delete' do %>
+            <%= button_to todo, method: :delete, data: { confirm: 'Are you sure?' }, title: 'delete', class: 'fix' do %>
               <%= sl_icon "trash", class: "ft trash" %> <%end %>
           </div>
         </div>
@@ -32,4 +29,4 @@
         </div>
     <% end %>
 
-</div>
+

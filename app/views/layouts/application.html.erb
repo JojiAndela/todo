@@ -6,11 +6,31 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="container">
-  <nav class="nav"></nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">My Todos</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+        Welcome, <%= current_user.email.split('@')[0] %>
+        <%end %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <% if user_signed_in? %>
+            <%=link_to 'New Todo', new_todo_path, class: 'btn btn-primary' %>
+            <%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger') %>
+        <% else %>
+            <%= link_to('Login', new_user_session_path, class: 'btn btn-primary')  %>
+            <%= link_to('Sign Up', new_user_registration_path, class: 'btn btn-success')  %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
     <% if notice %>
       <p class="notice" id="notice"><%= notice %></p>
     <% end %>

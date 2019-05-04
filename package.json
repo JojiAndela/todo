@@ -8,6 +8,10 @@
     "@rails/webpacker": "^4.0.2",
     "turbolinks": "^5.2.0"
   },
+  "scripts": {
+    "webpack:deploy": "webpack --config=config/webpack/production.js",
+    "heroku-postbuild": "yarn webpack:deploy"
+  },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.3.1"
