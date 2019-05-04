@@ -1,0 +1,9 @@
+<div class="container" style="width: 50%; padding: 20px;">
+  <h1 style="text-align: center"> New Todo</h1>
+
+  <%= render 'form', todo: @todo %>
+  <div style="padding: 10px 0;">
+    <%= link_to 'Back', todos_path, class: 'btn btn-danger' %>
+  </div>
+</div>
+

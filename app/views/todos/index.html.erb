@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="head">
+    <h1>Todos</h1> <%= link_to 'New Todo', new_todo_path, class: 'btn btn-primary' %>
+  </div>
+  <%completed = false %>
+
+    <% @todos.each do |todo| %>
+    <%if todo.completed && completed == false %>
+      <%completed = true %>
+      <div class="completed">--------------- Completed ---------------</div>
+    <%end %>
+    <div class="card">
+      <div class="card-body">
+        <div class="order <%=todo.priority.to_words %>"><%= todo.priority %></div>
+        <div class="todo"><%= todo.todo.truncate(100) %></div>
+        <div class="due">Due on <%= todo.due.strftime('%d/%m/%Y at %I:%M%p') %></div>
+      </div>
+      <div class="card-footer">
+        <div class="actions">
+          <div style="align-self: flex-start; font-weight: bold; color: green"> <%=  todo.completed ? 'Completed' : ''%></div>
+          <div class="buttons">
+            <%= link_to todo, title: 'show' do %> <%= sl_icon "eye", class: "ft show" %> <%end %>
+            <%= link_to edit_todo_path(todo), title: 'edit' do %> <%= sl_icon "pencil", class: "ft edit" %> <%end %>
+            <%= link_to todo.completed ? uncomplete_todo_path(todo) : complete_todo_path(todo), method: :post,
+                        data: { confirm: 'Are you sure?' }, title: todo.completed ? 'uncomplete':'complete'  do %>
+              <%= sl_icon todo.completed ? 'action-undo' :'action-redo' , class: todo.completed ? 'ft unact' :"ft act"%> <%end %>
+            <%= link_to todo, method: :delete, data: { confirm: 'Are you sure?' }, title: 'delete' do %>
+              <%= sl_icon "trash", class: "ft trash" %> <%end %>
+          </div>
+        </div>
+      </div>
+        </div>
+    <% end %>
+
+</div>
